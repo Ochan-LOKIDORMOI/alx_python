@@ -11,4 +11,4 @@ def pow(a, b):
         a *= a
         b //= 2
 
-    return round(result, 2)
+    return result
