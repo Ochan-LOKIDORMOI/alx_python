@@ -5,4 +5,4 @@ def pow(a, b):
         b = abs(b)     
     for i in range(b): 
         result = result * a         
-    return round(result, 20)  # Round to 20 decimal places
+    return round(result, 30)  # Round to 30 decimal places
