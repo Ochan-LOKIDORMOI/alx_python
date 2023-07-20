@@ -1,3 +1,6 @@
+import math
+
+
 def pow(a, b):
     result = 1
 
@@ -12,3 +15,11 @@ def pow(a, b):
         b //= 2
 
     return result
+
+
+def test_pow():
+    assert math.isclose(pow(10, -2), 0.01, rel_tol=1e-9)
+    assert math.isclose(pow(-98, -10), 1.223881142011411e-20, rel_tol=1e-9)
+
+
+test_pow()
