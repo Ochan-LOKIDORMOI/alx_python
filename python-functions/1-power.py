@@ -1,6 +1,3 @@
-import math
-
-
 def pow(a, b):
     result = 1
 
@@ -8,18 +5,7 @@ def pow(a, b):
         a = 1 / a
         b = -b
 
-    while b:
-        if b % 2 == 1:
-            result *= a
-        a *= a
-        b //= 2
+    for _ in range(b):
+        result *= a
 
     return result
-
-
-def test_pow():
-    assert math.isclose(pow(10, -2), 0.01, rel_tol=1e-9)
-    assert math.isclose(pow(-98, -10), 1.223881142011411e-20, rel_tol=1e-9)
-
-
-test_pow()
