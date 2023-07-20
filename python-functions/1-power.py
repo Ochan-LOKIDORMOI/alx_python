@@ -1,15 +1,12 @@
-#!/usr/bin/env python3
-
 def pow(a, b):
+    # Handle special cases
+    if b == 0:
+        return 1
+    elif b < 0:
+        return 1 / pow(a, -b)
+    
+    # Recursive calculation for positive powers
     result = 1
-    if b < 0:
-        a = 1 / a
-        b = -b
-
-    while b > 0:
-        if b % 2 == 1:
-            result *= a
-        a *= a
-        b //= 2
-
+    for _ in range(b):
+        result *= a
     return result
