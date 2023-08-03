@@ -1,9 +1,13 @@
 #!/usr/bin/python3
-"""An empty class"""
+"""Defines a base geometry class BaseGeometry"""
 
 
 class BaseGeometry:
     """
-    An empty class for geometry-related operations.
+    A class for geometry-related operations.
     """
-    pass
+    def area(self):
+        """
+        Raises an exception with the message "area() is not implemented".
+        """
+        raise Exception("area() is not implemented")

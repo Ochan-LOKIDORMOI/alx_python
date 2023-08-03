@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""This is empty class"""
+"""An empty class"""
 
 
 class BaseGeometry:
     """
-    This is empty class for geometry operations.
+    An empty class for geometry-related operations.
     """
     pass
