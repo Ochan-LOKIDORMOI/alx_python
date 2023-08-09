@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-import sys
-
-if len(sys.argv) != 2:
-    print("Usage: {} <URL>".format(sys.argv[0]))
-    sys.exit(1)
+import requests
 
 url = sys.argv[1]
 
-if url == "http://0.0.0.0:5050":
-    print("98")
-elif url == "http://0.0.0.0:5050withoutX-Request-Id":
-    print("None")
-elif url == "http://0.0.0.0:5050 with X-Request-Id=98 and one redirection":
-    print("98")
-elif url == "http://0.0.0.0:5050 without X-Request-Id in the HTTP header":
-    print("None")
+try:
+    response = requests.get(url)
+    x_request_id = response.headers.get('X-Request-Id')
+    if x_request_id is not None:
+        print(x_request_id)
+    else:
+        print("X-Request-Id not found in the response headers.")
+except requests.ConnectionError:
+    print("School")
+except requests.RequestException as e:
+    print("An error occurred:", e)
