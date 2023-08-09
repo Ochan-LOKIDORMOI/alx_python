@@ -14,8 +14,8 @@ try:
     if x_request_id is not None:
         print(x_request_id)
     else:
-        print("X-Request-Id not found in the response headers.")
+        print("None")
 except requests.ConnectionError:
-    print("School")
-except requests.RequestException as e:
-    print("An error occurred:", e)
+    print("None")
+except requests.RequestException:
+    print("None")
