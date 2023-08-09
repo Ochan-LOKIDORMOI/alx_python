@@ -1,10 +1,9 @@
-#!/usr/bin/python3
-"""This script fetches https://intranet.hbtn.io/status using the urllib package
-"""
-import urllib.request
-with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
-    data = response.read()
-    print("Body response:")
-    print("	- type:", type(data))
-    print("	- content:", data)
-    print("	- utf8 content:", data.decode('utf-8'))
+#!/usr/bin/env python3
+import requests
+
+url = "https://alu-intranet.hbtn.io/status"
+response = requests.get(url)
+
+print("Body response:")
+print("    - type:", type(response.text))
+print("    - content:", response.text)
