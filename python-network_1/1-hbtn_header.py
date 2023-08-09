@@ -3,12 +3,21 @@
 Usage: ./1-hbtn_header.py <URL>
 """
 import sys
-import urllib.request
-
+import requests
 
 if __name__ == "__main__":
-    url = sys.argv[1]
+    if len(sys.argv) != 2:
+        print("Usage: ./1-hbtn_header.py <URL>")
+        sys.exit(1)
 
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as response:
-        print(dict(response.headers).get("X-Request-Id"))
+    url = sys.argv[1]
+    
+    try:
+        response = requests.get(url)
+        x_request_id = response.headers.get('X-Request-Id')
+        if x_request_id:
+            print(x_request_id)
+        else:
+            print("X-Request-Id header not found in the response.")
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
