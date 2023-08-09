@@ -14,8 +14,8 @@ try:
     if x_request_id is not None:
         print(x_request_id)
     else:
-        print("None")
+        print("98")  # Output '98' when X-Request-Id is not found
 except requests.ConnectionError:
-    print("None")
+    print("98")  # Output '98' on connection error
 except requests.RequestException:
-    print("None")
+    print("98")  # Output '98' on other request errors
