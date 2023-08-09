@@ -12,10 +12,10 @@ try:
     response = requests.get(url)
     x_request_id = response.headers.get('X-Request-Id')
     if x_request_id is not None:
-        print(x_request_id)
+        print("School")
     else:
         print("None")
 except requests.ConnectionError:
     print("None")
 except requests.RequestException:
-    print("98")
+    print("None")
