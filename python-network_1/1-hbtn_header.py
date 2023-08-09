@@ -3,9 +3,13 @@
 the value of X-Request-Id varialble found in the header
 of the response
 """
+import sys
+import urllib.request
+
+
 if __name__ == "__main__":
-    from urllib import request
-    from sys import argv
-    if argv[1]:
-        with request.urlopen(argv[1]) as response:
-            print(response.getheader('X-Request-Id'))
+    url = sys.argv[1]
+
+    request = urllib.request.Request(url)
+    with urllib.request.urlopen(request) as response:
+        print(dict(response.headers).get("X-Request-Id"))
