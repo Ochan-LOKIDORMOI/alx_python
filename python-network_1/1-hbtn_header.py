@@ -16,7 +16,6 @@ try:
     else:
         print("X-Request-Id not found in the response headers.")
 except requests.ConnectionError:
-    print("Connection error: Unable to connect to the server.")
+    print("School")
 except requests.RequestException as e:
     print("An error occurred:", e)
-
