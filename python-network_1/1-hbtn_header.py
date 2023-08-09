@@ -1,21 +1,11 @@
-#!/usr/bin/env python3
-import requests
-import sys
-
-if len(sys.argv) != 2:
-    print("Usage: {} <URL>".format(sys.argv[0]))
-    sys.exit(1)
-
-url = sys.argv[1]
-
-try:
-    response = requests.get(url)
-    x_request_id = response.headers.get('X-Request-Id')
-    if x_request_id is not None:
-        print(x_request_id)
-    else:
-        print("School")
-except requests.ConnectionError:
-    print("School")
-except requests.RequestException:
-    print("School")
+#!/usr/bin/python3
+"""This script takes in a URL, sends a request to the URL and displays
+the value of X-Request-Id varialble found in the header
+of the response
+"""
+if __name__ == "__main__":
+    from urllib import request
+    from sys import argv
+    if argv[1]:
+        with request.urlopen(argv[1]) as response:
+            print(response.getheader('X-Request-Id'))
