@@ -7,7 +7,16 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 url = sys.argv[1]
-response = requests.get(url)
 
-x_request_id = response.headers.get('X-Request-Id')
-print(x_request_id)
+try:
+    response = requests.get(url)
+    x_request_id = response.headers.get('X-Request-Id')
+    if x_request_id is not None:
+        print(x_request_id)
+    else:
+        print("X-Request-Id not found in the response headers.")
+except requests.ConnectionError:
+    print("Connection error: Unable to connect to the server.")
+except requests.RequestException as e:
+    print("An error occurred:", e)
+
