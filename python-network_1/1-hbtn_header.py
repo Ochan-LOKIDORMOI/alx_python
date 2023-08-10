@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""I documented you"""
-
-from urllib.request import urlopen
-import sys
-
-if __name__ == '__main__':
-    with urlopen(sys.argv[1]) as res:
-        header = res.info()
-        print(header["X-Request-Id"])
+"""This script takes in a URL, sends a rquest to the URL
+and displays the value of the variable
+X-Request-Id it the response header
+"""
+if __name__ == "__main__":
+    import sys
+    import requests
+    r = requests.get(sys.argv[1])
+    print(r.headers.get('X-Request-Id'))
