@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-"""Defines a base geometry class BaseGeometry."""
+
+"""Class based on initial."""
 
 
 class BaseGeometry:
-    """this class represents a base geometry"""
+    """Presents a function area."""
 
     def area(self):
-        """method not implemented yet"""
+        """Raises exception."""
+
         raise Exception("area() is not implemented")
