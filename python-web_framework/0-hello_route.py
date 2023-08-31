@@ -1,22 +1,18 @@
 #!/usr/bin/python3
 
+"""
+Flask and imported from flask
+"""
 from flask import Flask
 
 app = Flask(__name__)
 
+#route created at the localhost
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
-    """
-    Route handler for the root path.
+# a defined function of hello_hbnb to return a string
+    return "Hello HBNB!"
 
-    Returns:
-        str: The message "Hello HBNB!"
-    """
-    return 'Hello HBNB!'
-
-if __name__ == '__main__':
-    """
-    Main entry point of the application.
-    Starts the Flask development server.
-    """
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+# activating the debug: ON
+    app.run(debug=True)
