@@ -1,56 +1,105 @@
+'''
+Write a script that starts a 
+Flask web application: The application
+must run on port the default port 
+and must run on 0.0.0.0
+'''
+# import flask module
+from glob import escape
 from flask import Flask, render_template
-from urllib.parse import unquote
 
+
+# define a flask instance
 app = Flask(__name__)
+# set strict_s;ashes flag to false
 
-# Define a route for the root URL with strict_slashes=False
-@app.route('/', strict_slashes=False)
-def hello_hbnb():
-    return 'Hello HBNB!'
+# create a route for index
+@app.route('/')
+# a function for
+def hello():
+    '''
+    a function definition that return
+    a strin hello... on a get request 
+    to a router page
+    param: 
+        type: NONE
+    Return:
+        type: String
+    '''
+    return "Hello HBNB!"
 
-# Define a route for "/hbnb" with strict_slashes=False
-@app.route('/hbnb', strict_slashes=False)
+@app.route('/hbnb')
 def hbnb():
-    return 'HBNB'
+    '''
+    a function definition that return
+    a strin hello... on a get request 
+    to a router page
+    param: 
+        type: NONE
+    Return:
+        type: String
+    '''
+    return "HBNB"
 
-# Define a route for "/c/<text>" with strict_slashes=False
-@app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
-    # Replace underscores with spaces in the text variable
-    text = unquote(text).replace('_', ' ')
-    return 'C {}'.format(text)
+@app.route('/c/<text>')
+def hbnb_C_is_fun(text):
+    '''
+    a function definition that return
+    a strin hello... on a get request 
+    to a router page
+    param: 
+        type: type
+    Return:
+        type: String
+    '''
+    return f"C {text.replace('_', ' ')}"
 
-# Define a route for "/python/<text>" with strict_slashes=False
-@app.route('/python/<text>', strict_slashes=False)
-@app.route('/python/', strict_slashes=False)  # Default value route
-def python_text(text="is_cool"):
-    # Replace underscores with spaces in the text variable
-    text = unquote(text).replace('_', ' ')
-    return 'Python {}'.format(text)
+@app.route('/python/')
+@app.route('/python/<text>')
+def python_is_cool(text='is cool'):
+    '''
+    this return a default text is cool
+    if no param is passed
+    param:
+        type: string
+    Return:
+        type: string
+    '''
+    return f"Python {escape(text.replace('_', ' '))}"
 
-# Define a route for "/number/<n>" with strict_slashes=False
-@app.route('/number/<int:n>', strict_slashes=False)
-def is_number(n):
-    if isinstance(n, int):
-        return '{} is a number'.format(n)
+@app.route('/number/<int:n>')
+def hello_id(n):
+    '''
+    Funtion tha return the int param passed
+    Param:
+        type:
+    Return:
+        type: string + value pass
+    '''
+    return f"{n} is a number"
+
+
+@app.route('/number_template/<int:n>')
+def hello_number_templates(n):
+    '''
+    Funtion that pass a param to a defines templates
+    Param:
+        type: int
+    return:
+        HTML with the value passed
+    '''
+    return render_template('5-number.html', n=n)
+
+
+@app.route('/number_odd_or_even/<int:n>')
+def even_or_odd(n):
+    if n%2 == 0:
+        msg = 'even'
     else:
-        return 'Not a number', 404
+        msg ='odd'
+    return render_template('6-number_odd_or_even.html', n=n, msg=msg)
 
-# Define a route for "/number_template/<n>" with strict_slashes=False
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    if isinstance(n, int):
-        return render_template('5-number.html', n=n)
-    else:
-        return 'Not a number', 404
-
-# Define a route for "/number_odd_or_even/<n>" with strict_slashes=False
-@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
-    if isinstance(n, int):
-        return render_template('6-number_odd_or_even.html', n=n)
-    else:
-        return 'Not a number', 404
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__=='__main__':
+    # for every route
+    app.url_map.strict_slashes = False
+    app.run(host='0.0.0.0', debug=True)
